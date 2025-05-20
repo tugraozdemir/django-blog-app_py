@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="jumbotron bg-light p-5 shadow rounded">
+        <h1 class="display-4 text-primary text-center">Yazılım Bilimi Bloguna Hoş Geldiniz!</h1>
+        <p class="lead text-center">Bu platformda geliştiriciler blog yazılarını paylaşabilir, bilgi alışverişi yapabilir ve başkalarına ilham verebilir.</p>
+        <hr class="my-4">
+        {% if request.user.is_authenticated %}
+            <div class="alert alert-success text-center">
+                <strong>Hoş geldin {{ request.user.username }}!</strong> Giriş yapmış bulunuyorsun. Yazmaya hazır mısın?
+            </div>
+        {% else %}
+            <div class="alert alert-warning text-center">
+                Giriş yapmadınız. <a href="{% url 'user:login' %}" class="alert-link">Buradan giriş yapın</a> ya da <a href="{% url 'user:register' %}" class="alert-link">kayıt olun</a>.
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock body %}
