@@ -1,0 +1,98 @@
+/* static/css/style.css */
+
+/* Genel Vücut Stili */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1A1A1A; /* Koyu arka plan */
+    color: #FFFFFF; /* Genel yazı rengi beyaz */
+    padding-top: 0 !important; /* index.html tam sayfa olduğu için navbar padding'ini kaldırırız */
+}
+
+/* Navbar Stili (Zaten tanımlı, ek değişiklik yok) */
+#mainNavbar {
+    background-color: #1A1A1A !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1030; /* Navbar'ın diğer elementlerin üzerinde kalmasını sağlar */
+}
+
+/* Hero Section (Ana Sayfa Başlığı) */
+.hero-section {
+    /*background: linear-gradient(#000000b3, rgba(0, 0, 0, 0.7)), url("") no-repeat center center/cover;
+    /* Arka plan görseli ve üzerine koyu gradyan */
+    min-height: calc(100vh - 70px); /* Ekran yüksekliğinden navbar yüksekliğini çıkar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; /* İçindeki elemanların konumlandırılması için */
+    padding-top: 70px; /* İçeriğin navbar'ın altına kaymasını sağlar */
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 1; /* İçeriğin gradyanın üzerinde olmasını sağlar */
+}
+
+.hero-section h1 {
+    font-size: 4.5rem; /* Daha büyük başlık */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7); /* Metin gölgesi */
+    color: #FF4D4D; /* Vurgu rengi */
+}
+
+.hero-section p.lead {
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto 3rem auto;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Index Sayfasındaki Alert Mesajları */
+.hero-section .alert {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(0px); /* Hafif bulanıklık */
+    -webkit-backdrop-filter: blur(0px);
+    background-color: rgba(0, 0, 0, 0.4); /* Hafif şeffaf koyu arka plan */
+    border-radius: 10px;
+}
+
+/* Index Sayfasındaki Butonlar */
+.hero-section .btn {
+    font-size: 1.2rem;
+    padding: 12px 30px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    border-width: 2px; /* Daha kalın kenarlık */
+}
+
+.hero-section .btn-primary {
+    background: linear-gradient(to right, #ff4d4d, #f57e2d);
+    border: none;
+    color: #FFFFFF;
+}
+.hero-section .btn-primary:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+}
+
+.hero-section .btn-outline-light {
+    border-color: #FF4D4D !important; /* Vurgu rengi kenarlık */
+    color: #FF4D4D !important; /* Vurgu rengi yazı */
+    transition: all 0.3s ease;
+}
+
+.hero-section .btn-outline-light:hover {
+    background-color: #FF4D4D !important;
+    color: #1A1A1A !important; /* Hover'da arka plan vurgu, yazı koyu */
+}
+
+/* Diğer Sayfaların Genel Stili (Login, Register, About) */
+/* layout.html'deki .container'ı dolduracak şekilde düzenlenmiştir. */
+/* Eğer bu sayfaların da arkaplanının tam ekran koyu olmasını istersen, 
+    bu section'ları da .hero-section gibi yapıp kendi arkaplanlarını tanımlayabiliriz. */
+
+/* Kartlar, Formlar ve diğer genel stiller daha önceki halleri gibi kalmalı */
+/* ... (Mevcut kart, form, buton ve link stillerini buraya kopyala) ... */

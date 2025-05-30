@@ -2,85 +2,53 @@
 
 {% block body %}
 
-<div class ="row">
-    
-        <div class="col-md-10 offset-md-3">
-            <div class="col-lg-8">
-                <h3>Makaleler</h3>
-                <hr>
-                </div>
-        </div>
-</div>
-<div class ="row">
-    <div class="col-md-10 offset-md-3">
-        <div class="col-lg-8">
-            <form>
-                 {% csrf_token %} 
-                <input type="text" name = "keyword" class="input-sm" maxlength="64" placeholder="Ara...">
-              <button type="submit" class="btn btn-danger">Ara</button>
-            </form>
-      </div>
+<div class="row justify-content-center mt-5"> {# Navbar'dan boşluk ve içeriği ortaya hizalama #}
+    <div class="col-lg-8 col-md-10"> {# Daha uygun bir sütun genişliği, örneğin lg'de 8, md'de 10 #}
+        <h3>Makaleler</h3>
+        <hr>
+        <form class="mb-4"> {# Arama formuna alt boşluk ekledik #}
+            {% csrf_token %} 
+            <div class="input-group"> {# Arama kutusu ve butonu için Bootstrap input-group #}
+                <input type="text" name="keyword" class="form-control" placeholder="Ara...">
+                <button type="submit" class="btn btn-danger">Ara</button>
+            </div>
+        </form>
     </div>
-
 </div>
-
 
 {% if articles %}
+    {% for article in articles %}
+    <div class="row justify-content-center"> {# Her makale için yeni bir satır #}
+        <div class="col-lg-8 col-md-10"> {# Makale içeriği için uygun sütun genişliği #}
+            <a href="{% url 'article:detail' article.slug %}"><h2 class="mt-4">{{article.title}}</h2></a> 
+            
+            <p class="lead">{{article.author.username}} tarafından yayınlandı</p>
 
-{% for article in articles %}
-<div class="row">
-    <div class="col-md-10 offset-md-3">
+            <hr>
 
-    <!-- Post Content Column -->
-    <div class="col-lg-8">
+            <p>{{article.created_date}}</p>
+            <hr>
+            {% if article.article_image %}
+            <a href="{% url 'article:detail' article.slug %}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""></a>
+            {% endif %}
+            
+            <hr>
 
-      <!-- Title -->
-      <a href="{% url 'article:detail' article.slug %}"><h2 class="mt-4">{{article.title}}</h2></a> 
-        
-      <!-- Author -->
-      <p class="lead">
-        
-        {{article.author.username}} tarafından yayınlandı
-      </p>
+            <p class="lead">{{article.content|safe|truncatewords:50}}</p>
 
-      <hr>
-
-      <!-- Date/Time -->
-      <p>{{article.created_date}}</p>
-      <hr>
-      <!-- Preview Image -->
-      {% if article.article_image %}
-      <a href="{% url 'article:detail' article.slug %}"><img class="img-fluid rounded" src="{{article.article_image.url}}" alt=""></a>
-      {% endif %}
-     
-
-      <hr>
-
-      <!-- Post Content -->
-      <p class="lead">
-          {{article.content|safe|truncatewords:50}}
-      </p>
-
-      <a href="{% url 'article:detail' article.slug %}" class ="btn btn-danger my-3">Devamını Oku</a>
-      <hr>
-         
+            <a href="{% url 'article:detail' article.slug %}" class ="btn btn-danger my-3">Devamını Oku</a>
+            <hr>
         </div>
-      </div>
-      </div>
-
-{% endfor %}
-
+    </div>
+    {% endfor %}
 
 {% else %}
-<div class ="row">
-    
-    <div class="col-md-10 offset-md-3">
-        <div class="col-lg-8">
-<div class = "alert alert-danger">
-   Makale Bulunamadı
-</div>
-</div>
-</div>
+<div class ="row justify-content-center mt-3"> {# Boşluk ve ortaya hizalama #}
+    <div class="col-lg-8 col-md-10">
+        <div class="alert alert-danger">
+            Makale Bulunamadı
+        </div>
+    </div>
 </div>
 {% endif %}
 

@@ -1,19 +1,29 @@
 {% extends "layout.html" %}
-{% block body %}
 {% load crispy_forms_tags %}
 
-<div class="row">
-    <div class="col-md-6 offset-md-3">
-        <h3>Giriş Yap</h3>
-        <hr>
-        <form method = "post">
-            {% csrf_token %}
-            
-            {{form|crispy}}
-            <br>
-            <button type = "submit" class = "btn btn-danger">Giriş Yap</button>
-        </form>
+{% block body %}
+{# Ana container layout.html'den geliyor, bu yüzden burada tekrar tanımlamıyoruz. #}
+<div class="row justify-content-center"> {# Formu sayfada ortalamak için #}
+    <div class="col-md-8 col-lg-6 col-xl-5 mt-5"> {# Orta ve büyük ekranlar için sütun genişliğini ayarlıyoruz #}
+        <div class="card shadow-lg border-0">
+            <div class="card-body p-5">
+                <h2 class="text-center mb-4">Giriş Yap</h2>
+                {# Mesajlar layout.html'deki genel container'dan gelecek #}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div class="d-grid gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">Giriş</button>
+                    </div>
+                </form>
+                <hr class="my-4">
+                <div class="text-center">
+                    <p class="mb-0">Hesabın yok mu? <a href="{% url 'user:register' %}" class="text-decoration-none">Kayıt Ol</a></p>
+                    {# DÜZELTİLDİ: 'user:password_reset' yerine 'password_reset' kullanıldı #}
+                    <p><a href="{% url 'password_reset' %}" class="text-decoration-none">Şifremi Unuttum</a></p>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-
+</div>
 {% endblock body %}

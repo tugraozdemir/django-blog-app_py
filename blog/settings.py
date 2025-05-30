@@ -146,3 +146,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
+# settings.py dosyana ekle
+LOGIN_REDIRECT_URL = 'index' # Başarılı giriş sonrası yönlendirilecek URL adı
+LOGOUT_REDIRECT_URL = 'index' # Başarılı çıkış sonrası yönlendirilecek URL adı
+LOGIN_URL = 'user:login' # login_required decorator'ı için varsayılan giriş URL'si (app_name ile birlikte)

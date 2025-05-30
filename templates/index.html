@@ -2,20 +2,30 @@
 {% load static %}
 
 {% block body %}
-<div class="container mt-5">
-    <div class="jumbotron bg-light p-5 shadow rounded">
-        <h1 class="display-4 text-primary text-center">Yazılım Bilimi Bloguna Hoş Geldiniz!</h1>
-        <p class="lead text-center">Bu platformda geliştiriciler blog yazılarını paylaşabilir, bilgi alışverişi yapabilir ve başkalarına ilham verebilir.</p>
-        <hr class="my-4">
+<header class="hero-section text-white d-flex align-items-center justify-content-center text-center">
+    <div class="container">
+        <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">Yazılım Bilimi Bloguna Hoş Geldiniz!</h1>
+        <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-0.5s">
+            Bu platformda geliştiriciler blog yazılarını paylaşabilir, bilgi alışverişi yapabilir ve başkalarına ilham verebilir.
+        </p>
+
         {% if request.user.is_authenticated %}
-            <div class="alert alert-success text-center">
-                <strong>Hoş geldin {{ request.user.username }}!</strong> Giriş yapmış bulunuyorsun. Yazmaya hazır mısın?
+            <div class="alert alert-success bg-transparent border-0 text-white animate__animated animate__zoomIn animate__delay-1s" role="alert">
+                <strong class="d-block mb-2">Hoş geldin {{ request.user.username }}!</strong>
+                Giriş yapmış bulunuyorsun. Yazmaya hazır mısın?
             </div>
+            <a href="{% url 'article:articles' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2 animate__animated animate__fadeInUp animate__delay-1.5s">Makalelere Göz At</a>
         {% else %}
-            <div class="alert alert-warning text-center">
-                Giriş yapmadınız. <a href="{% url 'user:login' %}" class="alert-link">Buradan giriş yapın</a> ya da <a href="{% url 'user:register' %}" class="alert-link">kayıt olun</a>.
+            <div class="alert alert-warning bg-transparent border-0 text-white animate__animated animate__zoomIn animate__delay-1s" role="alert">
+                <strong class="d-block mb-2">Giriş yapmadınız.</strong>
+                Devam etmek için giriş yapın veya kayıt olun.
+            </div>
+            <div class="d-grid gap-2 d-md-block animate__animated animate__fadeInUp animate__delay-1.5s">
+                <a href="{% url 'user:login' %}" class="btn btn-primary btn-lg rounded-pill px-4 py-2 me-md-2">Giriş Yap</a>
+                <a href="{% url 'user:register' %}" class="btn btn-outline-light btn-lg rounded-pill px-4 py-2">Kayıt Ol</a>
             </div>
         {% endif %}
     </div>
-</div>
+</header>
+
 {% endblock body %}

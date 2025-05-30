@@ -1,7 +1,8 @@
-from django.contrib import admin
+# article/urls.py
+
 from django.urls import path
-from django.conf.urls import handler400, handler500
 from . import views
+
 app_name = "article"
 
 urlpatterns = [
@@ -10,7 +11,6 @@ urlpatterns = [
     path('article/<slug:slug>/',views.detail,name = "detail"),
     path('update/<slug:slug>',views.updateArticle,name = "update"),
     path('delete/<slug:slug>',views.deleteArticle,name = "delete"),
-    path('',views.articles,name = "articles"),
+    path('',views.articles,name = "articles"), # articles/ altındaki ana makale listesi
     path('comment/<slug:slug>',views.addComment,name = "comment"),
-    
 ]
